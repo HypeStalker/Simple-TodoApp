@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="todo-card">
+    <div>
+        <h1>TodoApp</h1>
+    </div>
+    <div>
+        <p class="user">Hello <strong>{{ user.username }}</strong>! Here is a list of all your tasks:</p>        
+    </div>
+    <div>
+        {% if tasks %}
+        <table>
+            <tr>
+                <th class="tasks-th">
+                    Tasks
+                </th>
+                <th class="date-th">
+                    Date
+                </th>
+            </tr>
+            {% for todo in tasks %}
+            <tr>
+                <td class="todo-task-date">{{ todo.text }}</td>
+                <td class="todo-task-date">{{ todo.created_at|date:"G:i d/m/Y" }}</td>
+                <td class="td-delete"><a href="{% url 'todo_delete' todo.id %}" class="btn">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+           <p>Looks like you don't have any tasks yet. Add some by using a button below.</p>
+        {% endif %}  
+    </div>
+    <div>
+        <a href="{% url 'logout' %}" class="btn">Log Out</a> <a href="{% url 'todo_create' %}" class="btn">Add new task</a>
+    </div>
+</div>
+
+{% endblock content %}

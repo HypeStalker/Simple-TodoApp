@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="create-form">
+    <div>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Add new task" class="btn">
+            <a href="{% url 'todo_list' %}" class="btn">Back to your tasks</a>
+        </form>
+    </div>
+</div>
+{% endblock content %}
