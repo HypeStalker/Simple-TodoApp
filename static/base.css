@@ -173,3 +173,10 @@ th {
     margin-bottom: 5px;
     font-size: 15px;
 }
+
+.forbidden {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

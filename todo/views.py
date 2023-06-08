@@ -1,6 +1,7 @@
+from typing import Optional
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic.edit import CreateView, DeleteView
 from django.views.generic.list import ListView
 from django.contrib.auth.models import User
@@ -19,7 +20,7 @@ class TaskList(LoginRequiredMixin, ListView):
         return queryset
 
 
-class TaskCreate(CreateView):
+class TaskCreate(LoginRequiredMixin,CreateView):
     model = Todo
     template_name = "todo/todo_create.html"
     success_url = reverse_lazy("todo_list")
@@ -30,10 +31,14 @@ class TaskCreate(CreateView):
         return super().form_valid(form)
     
 
-class TaskDelete(DeleteView):
+class TaskDelete(LoginRequiredMixin,  UserPassesTestMixin, DeleteView):
     model = Todo
     template_name = "todo/todo_delete.html"
     success_url = reverse_lazy("todo_list")
+
+    def test_func(self):
+        obj = self.get_object()
+        return obj.author == self.request.user
 
 
 class RegisterView(CreateView):

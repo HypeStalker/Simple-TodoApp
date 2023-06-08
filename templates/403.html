@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="forbidden">
+   <h1>You don't have acces to perform this action.</h1>
+    <a href="{% url 'todo_list' %}" class="btn">Back</a> 
+</div>
+{% endblock content %}
