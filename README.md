@@ -6,16 +6,8 @@ Account is required to use this app. After logging in users can create and delet
 
 You can create your own account or use one of test accounts
 
-> Login: testuser
-
-> Password: Testpass123
-
-
-> Login: testuser2
-
-> Password: Testpass123
-
-
-> Login: testuser4
-
-> Password: Testpass123
+| Login        | Password      |
+| -------------|:-------------:|
+| testuser     | Testpass123   |
+| testuser2    | Testpass123   |
+| testuser4    | Testpass123   |
